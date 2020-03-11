@@ -4,21 +4,17 @@ import sys
 
 def rock_paper_scissors(n):
   outcomes = []
-  plays = ['rock', "scissor", 'paper']
+  plays = ['rock', 'paper', 'scissors']
 
-  def rec_rps(n, result=[]):
-    # print(f"result: {result}")
-    if n == 0:
-      return outcomes.append(result)
+  def generate_plays(rounds_left, result=[]):
+    if rounds_left == 0:
+      outcomes.append(result)
+      return
     for play in plays:
-      rec_rps(n-1, result + [play])
-    
-  rec_rps(n, [])
+      generate_plays(rounds_left - 1, result + [play])
+
+  generate_plays(n, [])
   return outcomes
-
-# print(rock_paper_scissors(2))
-
-
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
